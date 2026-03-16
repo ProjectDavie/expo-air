@@ -4,6 +4,7 @@
     "slug": "expo-air",
     "version": "1.0.0",
     "sdkVersion": "46.0.0",
+    "entryPoint": "./index.js",
     "orientation": "landscape",
     "platforms": ["ios","android","web"],
     "assetBundlePatterns": ["**/*"],
