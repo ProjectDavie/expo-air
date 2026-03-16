@@ -1,67 +1,66 @@
-import React, { useState } from "react";
-import {
-  SafeAreaView,
-  View,
-  Text,
-  StyleSheet,
-  ScrollView,
-  TouchableOpacity,
-} from "react-native";
+import React from 'react';
+import { 
+  SafeAreaView, 
+  View, 
+  Text, 
+  StyleSheet, 
+  ScrollView, 
+  StatusBar 
+} from 'react-native';
 
-const elements = [
-  { symbol: "H", name: "Hydrogen", category: "nonmetal", fact: "Lightest element in the universe." },
-  { symbol: "He", name: "Helium", category: "noble", fact: "Used in balloons because it is lighter than air." },
-  { symbol: "Li", name: "Lithium", category: "alkali", fact: "Used in rechargeable batteries." },
-  { symbol: "Be", name: "Beryllium", category: "alkaline", fact: "Used in aerospace materials." },
-  { symbol: "B", name: "Boron", category: "metalloid", fact: "Important in plant cell walls." },
-  { symbol: "C", name: "Carbon", category: "nonmetal", fact: "Forms the basis of life." },
-  { symbol: "N", name: "Nitrogen", category: "nonmetal", fact: "Makes up 78% of Earth's atmosphere." },
-  { symbol: "O", name: "Oxygen", category: "nonmetal", fact: "Essential for respiration." },
-  { symbol: "F", name: "Halogen", category: "halogen", fact: "Fluorine is the most reactive element." },
-  { symbol: "Ne", name: "Neon", category: "noble", fact: "Used in neon lights." },
-];
-
-const categoryColors: any = {
-  alkali: "#ff6b6b",
-  alkaline: "#ffa94d",
-  metalloid: "#ffd43b",
-  nonmetal: "#69db7c",
-  halogen: "#4dabf7",
-  noble: "#b197fc",
+// Color mapping for element categories
+const CATEGORY_COLORS = {
+  'noble-gas': '#FFBC42',
+  'alkali-metal': '#EC674E',
+  'alkaline-earth': '#FBAB7E',
+  'metalloid': '#4FB06D',
+  'nonmetal': '#218380',
+  'transition-metal': '#73D2DE',
+  'post-transition-metal': '#D81159',
 };
 
-export default function App() {
-  const [selected, setSelected] = useState<any>(null);
+const ELEMENTS = [
+  { symbol: 'H', name: 'Hydrogen', atomicNumber: 1, category: 'nonmetal', fact: 'Most abundant element in the universe.' },
+  { symbol: 'He', name: 'Helium', atomicNumber: 2, category: 'noble-gas', fact: 'Second lightest and second most abundant element.' },
+  { symbol: 'Li', name: 'Lithium', atomicNumber: 3, category: 'alkali-metal', fact: 'Lightest metal and lightest solid element.' },
+  { symbol: 'Be', name: 'Beryllium', atomicNumber: 4, category: 'alkaline-earth', fact: 'Used in gemstones like emeralds and aquamarines.' },
+  { symbol: 'B', name: 'Boron', atomicNumber: 5, category: 'metalloid', fact: 'Crucial for the cell walls of all plants.' },
+  { symbol: 'C', name: 'Carbon', atomicNumber: 6, category: 'nonmetal', fact: 'The basis for all known life on Earth.' },
+  { symbol: 'N', name: 'Nitrogen', atomicNumber: 7, category: 'nonmetal', fact: 'Makes up about 78% of Earth’s atmosphere.' },
+  { symbol: 'O', name: 'Oxygen', atomicNumber: 8, category: 'nonmetal', fact: 'The third most abundant element in the universe.' },
+];
 
+export default function App() {
   return (
     <SafeAreaView style={styles.container}>
-      <Text style={styles.title}>Periodic Table</Text>
-
-      <ScrollView>
+      <StatusBar barStyle="dark-content" />
+      <Text style={styles.title}>Periodic Table Fun Facts</Text>
+      
+      <ScrollView contentContainerStyle={styles.scrollContainer}>
         <View style={styles.grid}>
-          {elements.map((el) => (
-            <TouchableOpacity
-              key={el.symbol}
+          {ELEMENTS.map((item) => (
+            <View 
+              key={item.atomicNumber} 
               style={[
-                styles.cell,
-                { backgroundColor: categoryColors[el.category] },
+                styles.card, 
+                { backgroundColor: CATEGORY_COLORS[item.category] || '#ccc' }
               ]}
-              onPress={() => setSelected(el)}
             >
-              <Text style={styles.symbol}>{el.symbol}</Text>
-              <Text style={styles.name}>{el.name}</Text>
-            </TouchableOpacity>
+              <View style={styles.cardHeader}>
+                <Text style={styles.atomicNumber}>{item.atomicNumber}</Text>
+                <Text style={styles.symbol}>{item.symbol}</Text>
+              </View>
+              
+              <Text style={styles.elementName}>{item.name}</Text>
+              
+              <View style={styles.factBox}>
+                <Text style={styles.factText}>{item.fact}</Text>
+              </View>
+              
+              <Text style={styles.categoryTag}>{item.category.replace('-', ' ')}</Text>
+            </View>
           ))}
         </View>
-
-        {selected && (
-          <View style={styles.factBox}>
-            <Text style={styles.factTitle}>
-              {selected.name} ({selected.symbol})
-            </Text>
-            <Text style={styles.fact}>{selected.fact}</Text>
-          </View>
-        )}
       </ScrollView>
     </SafeAreaView>
   );
@@ -70,56 +69,72 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 12,
-    backgroundColor: "#f5f5f5",
+    backgroundColor: '#f5f5f5',
   },
-
   title: {
     fontSize: 28,
-    fontWeight: "bold",
-    textAlign: "center",
-    marginBottom: 10,
+    fontWeight: '900',
+    marginVertical: 20,
+    textAlign: 'center',
+    color: '#2c3e50',
   },
-
+  scrollContainer: {
+    paddingHorizontal: 16,
+    paddingBottom: 40,
+  },
   grid: {
-    flexDirection: "row",
-    flexWrap: "wrap",
-    justifyContent: "center",
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-between',
   },
-
-  cell: {
-    width: 70,
-    height: 70,
-    margin: 4,
-    borderRadius: 10,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-
-  symbol: {
-    fontSize: 20,
-    fontWeight: "bold",
-  },
-
-  name: {
-    fontSize: 10,
-  },
-
-  factBox: {
-    marginTop: 20,
-    padding: 16,
-    backgroundColor: "white",
+  card: {
+    width: '48%', // Fits two columns
     borderRadius: 12,
-    elevation: 4,
+    padding: 12,
+    marginBottom: 16,
+    elevation: 3, // Android shadow
+    shadowColor: '#000', // iOS shadow
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
   },
-
-  factTitle: {
-    fontSize: 20,
-    fontWeight: "bold",
-    marginBottom: 8,
+  cardHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'flex-start',
   },
-
-  fact: {
+  atomicNumber: {
+    fontSize: 14,
+    fontWeight: '700',
+    color: 'rgba(0,0,0,0.5)',
+  },
+  symbol: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: '#fff',
+  },
+  elementName: {
     fontSize: 16,
+    fontWeight: '600',
+    color: '#fff',
+    marginTop: 4,
   },
+  factBox: {
+    marginTop: 10,
+    backgroundColor: 'rgba(255,255,255,0.2)',
+    padding: 8,
+    borderRadius: 6,
+  },
+  factText: {
+    fontSize: 12,
+    color: '#fff',
+    fontStyle: 'italic',
+  },
+  categoryTag: {
+    fontSize: 10,
+    fontWeight: 'bold',
+    color: 'rgba(255,255,255,0.7)',
+    marginTop: 8,
+    textTransform: 'uppercase',
+  }
 });
