@@ -17,7 +17,7 @@ export default function MainLayout({ children, navigation, activeRoute }) {
       <View style={styles.row}>
         {/* LEFT NAV BAR */}
         <View style={styles.leftNav}>
-          <Text style={styles.logo}>⚛️</Text>
+          <Text style={styles.logo}>🔵</Text>
           {tabs.map((tab) => (
             <TouchableOpacity
               key={tab.name}
