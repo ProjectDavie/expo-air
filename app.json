@@ -1,0 +1,14 @@
+{
+  "expo": {
+    "name": "Expo Air",
+    "slug": "expo-air",
+    "version": "1.0.0",
+    "sdkVersion": "46.0.0",
+    "orientation": "landscape",
+    "platforms": ["ios","android","web"],
+    "assetBundlePatterns": ["**/*"],
+    "ios": {"supportsTablet": true},
+    "android": {"adaptiveIcon": {"backgroundColor": "#FFFFFF"}},
+    "web": {}
+  }
+}
