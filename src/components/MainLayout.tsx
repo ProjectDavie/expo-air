@@ -1,3 +1,4 @@
+// D:\ProjectDavie\CODE\expo-air\src\components\MainLayout.tsx
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, SafeAreaView } from 'react-native';
 
@@ -5,6 +6,9 @@ export default function MainLayout({ children, navigation, activeRoute }) {
   const tabs = [
     { name: 'Table', icon: '⚛️', route: 'PeriodicTable' },
     { name: 'Search', icon: '🔍', route: 'Search' },
+    { name: 'Favorites', icon: '⭐', route: 'Favorites' },
+    { name: 'Groups', icon: '🧪', route: 'Groups' },
+    { name: 'Profile', icon: '👤', route: 'Profile' },
     { name: 'Settings', icon: '⚙️', route: 'Settings' },
   ];
 
@@ -15,7 +19,7 @@ export default function MainLayout({ children, navigation, activeRoute }) {
         <View style={styles.leftNav}>
           <Text style={styles.logo}>⚛️</Text>
           {tabs.map((tab) => (
-            <TouchableOpacity 
+            <TouchableOpacity
               key={tab.name}
               style={[styles.tabItem, activeRoute === tab.route && styles.activeTab]}
               onPress={() => navigation.navigate(tab.route)}
