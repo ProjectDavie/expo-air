@@ -1,4 +1,4 @@
-// D:\ProjectDavie\CODE\expo-air\src\App.tsx
+// D:\ProjectDavie\CODE\expo-air\src\navigation\MainNavigator.tsx
 import 'react-native-gesture-handler';
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';

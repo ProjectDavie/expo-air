@@ -5,6 +5,7 @@ import {
   TextInput,
   TouchableOpacity,
   StyleSheet,
+  useWindowDimensions,
 } from 'react-native';
 
 interface Props {
@@ -15,6 +16,9 @@ interface Props {
 export default function SignUp({ goToLogin, goToMain }: Props) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const { width } = useWindowDimensions();
+
+  const isDesktop = width >= 768;
 
   const handleSignup = () => {
     if (username.trim() && password.trim()) {
@@ -26,33 +30,62 @@ export default function SignUp({ goToLogin, goToMain }: Props) {
   };
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Sign Up</Text>
+    <View style={[styles.container, isDesktop && styles.row]}>
 
-      <TextInput
-        placeholder="Username"
-        style={styles.input}
-        value={username}
-        onChangeText={setUsername}
-      />
+      {/* 🔥 LEFT PANEL */}
+      {isDesktop && (
+        <View style={styles.leftPanel}>
+          <View>
+            <Text style={styles.brandTitle}>
+              Join Periodic App
+            </Text>
 
-      <TextInput
-        placeholder="Password"
-        style={styles.input}
-        value={password}
-        onChangeText={setPassword}
-        secureTextEntry
-      />
+            <Text style={styles.brandText}>
+              Create your account to explore elements, save favorites,
+              and enhance your chemistry learning journey.
+            </Text>
+          </View>
 
-      <TouchableOpacity style={styles.button} onPress={handleSignup}>
-        <Text style={styles.buttonText}>Create Account</Text>
-      </TouchableOpacity>
+          <Text style={styles.footer}>
+            © {new Date().getFullYear()} Periodic App
+          </Text>
+        </View>
+      )}
 
-      <TouchableOpacity onPress={goToLogin}>
-        <Text style={styles.switchText}>
-          Already have an account? Sign In
-        </Text>
-      </TouchableOpacity>
+      {/* 🔥 RIGHT PANEL */}
+      <View style={styles.rightPanel}>
+        <View style={styles.formBox}>
+
+          <Text style={styles.welcome}>Create Account</Text>
+          <Text style={styles.subtitle}>Sign up to get started</Text>
+
+          <TextInput
+            placeholder="Username"
+            style={styles.input}
+            value={username}
+            onChangeText={setUsername}
+          />
+
+          <TextInput
+            placeholder="Password"
+            style={styles.input}
+            value={password}
+            onChangeText={setPassword}
+            secureTextEntry
+          />
+
+          <TouchableOpacity style={styles.button} onPress={handleSignup}>
+            <Text style={styles.buttonText}>Create Account</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity onPress={goToLogin}>
+            <Text style={styles.switchText}>
+              Already have an account? Sign In
+            </Text>
+          </TouchableOpacity>
+
+        </View>
+      </View>
     </View>
   );
 }
@@ -60,29 +93,77 @@ export default function SignUp({ goToLogin, goToMain }: Props) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    padding: 24,
-    backgroundColor: '#f5f5f5',
+    backgroundColor: '#fff',
   },
 
-  title: {
-    fontSize: 28,
+  row: {
+    flexDirection: 'row',
+  },
+
+  /* LEFT PANEL */
+  leftPanel: {
+    flex: 1,
+    backgroundColor: '#000',
+    padding: 40,
+    justifyContent: 'space-between',
+    borderTopRightRadius: 40,
+    borderBottomRightRadius: 40,
+  },
+
+  brandTitle: {
+    color: '#fff',
+    fontSize: 32,
     fontWeight: 'bold',
-    marginBottom: 24,
+    marginBottom: 16,
+  },
+
+  brandText: {
+    color: '#aaa',
+    fontSize: 14,
+    lineHeight: 20,
+  },
+
+  footer: {
+    color: '#555',
+    fontSize: 12,
+  },
+
+  /* RIGHT PANEL */
+  rightPanel: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 24,
+  },
+
+  formBox: {
+    width: '100%',
+    maxWidth: 400,
+  },
+
+  welcome: {
+    fontSize: 26,
+    fontWeight: '600',
     textAlign: 'center',
+    marginBottom: 8,
+  },
+
+  subtitle: {
+    textAlign: 'center',
+    color: '#666',
+    marginBottom: 24,
   },
 
   input: {
-    backgroundColor: '#fff',
-    padding: 12,
-    borderRadius: 8,
-    marginBottom: 16,
     borderWidth: 1,
-    borderColor: '#ccc',
+    borderColor: '#000',
+    borderRadius: 8,
+    padding: 12,
+    marginBottom: 16,
   },
 
   button: {
-    backgroundColor: '#27ae60',
+    backgroundColor: '#000',
     padding: 12,
     borderRadius: 8,
     alignItems: 'center',
@@ -91,12 +172,11 @@ const styles = StyleSheet.create({
 
   buttonText: {
     color: '#fff',
-    fontSize: 16,
     fontWeight: 'bold',
   },
 
   switchText: {
     textAlign: 'center',
-    color: '#3498db',
+    color: '#007AFF',
   },
 });
