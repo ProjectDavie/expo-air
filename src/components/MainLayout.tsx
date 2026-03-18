@@ -7,7 +7,7 @@ export default function MainLayout({ children, navigation, activeRoute, onSignOu
     { name: 'Table', icon: '⚛️', route: 'PeriodicTable' },
     { name: 'Search', icon: '🔍', route: 'Search' },
     { name: 'Favorites', icon: '⭐', route: 'Favorites' },
-    { name: 'Groups', icon: '🧪', route: 'Groups' },
+    { name: 'White Board', icon: '🧪', route: 'WhiteBoard' },
     { name: 'Profile', icon: '👤', route: 'Profile' },
     { name: 'Settings', icon: '⚙️', route: 'Settings' },
   ];

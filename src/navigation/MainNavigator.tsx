@@ -9,8 +9,9 @@ import PeriodicTableScreen from '../screens/main/PeriodicTableScreen';
 import ProfileScreen from '../screens/main/ProfileScreen';
 import SearchScreen from '../screens/main/SearchScreen';
 import FavoritesScreen from '../screens/main/FavoritesScreen';
-import GroupsScreen from '../screens/main/GroupsScreen';
+import GroupsScreen from '../screens/main/WhiteBoardScreen';
 import SettingsScreen from '../screens/main/SettingsScreen';
+import WhiteBoard from '../screens/main/Whiteboard/WhiteBoard';
 
 // Initialize the Stack Navigator
 const Stack = createNativeStackNavigator();
@@ -48,6 +49,10 @@ export default function MainNavigator({ onSignOut }) {
 
         <Stack.Screen name="Groups">
           {withLayout(GroupsScreen, 'Groups', onSignOut)}
+        </Stack.Screen>
+
+        <Stack.Screen name="WhiteBoard">
+          {(props) => <WhiteBoard {...props} />}
         </Stack.Screen>
 
         <Stack.Screen name="Profile">
