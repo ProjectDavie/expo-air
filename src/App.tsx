@@ -1,13 +1,11 @@
 import React, { useState } from 'react';
-import SignIn from './SignIn';
-import SignUp from './SignUp';
-import MainApp from './MainApp';
+import AuthNavigator from './navigation/AuthNavigator';
+import MainNavigator from './navigation/MainNavigator';
 
 export default function App() {
-  const [screen, setScreen] = useState<'login' | 'signup' | 'main'>('login');
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
-  if (screen === 'main') return <MainApp />;
-  if (screen === 'signup') return <SignUp goToLogin={() => setScreen('login')} goToMain={() => setScreen('main')} />;
+  if (isAuthenticated) return <MainNavigator />;
 
-  return <SignIn goToSignup={() => setScreen('signup')} goToMain={() => setScreen('main')} />;
+  return <AuthNavigator onAuthenticated={() => setIsAuthenticated(true)} />;
 }

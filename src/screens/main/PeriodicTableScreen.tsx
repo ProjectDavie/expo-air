@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet, ScrollView, Alert } from 'react-native';
-import { ELEMENTS, ElementData } from '../data/elements';
-import { ElementCell } from '../components/ElementCell';
+import { ELEMENTS, ElementData } from '../../data/elements';
+import { ElementCell } from '../../components/ElementCell';
 
 const MAX_ROW = 9;
 const MAX_COL = 18;

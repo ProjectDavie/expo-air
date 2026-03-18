@@ -4,13 +4,13 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import MainLayout from './components/MainLayout';
-import PeriodicTableScreen from './screens/PeriodicTableScreen';
-import ProfileScreen from './screens/ProfileScreen';
-import SearchScreen from './screens/SearchScreen';
-import FavoritesScreen from './screens/FavoritesScreen';
-import GroupsScreen from './screens/GroupsScreen';
-import SettingsScreen from './screens/SettingsScreen';
+import MainLayout from '../components/MainLayout';
+import PeriodicTableScreen from '../screens/main/PeriodicTableScreen';
+import ProfileScreen from '../screens/main/ProfileScreen';
+import SearchScreen from '../screens/main/SearchScreen';
+import FavoritesScreen from '../screens/main/FavoritesScreen';
+import GroupsScreen from '../screens/main/GroupsScreen';
+import SettingsScreen from '../screens/main/SettingsScreen';
 
 // Initialize the Stack Navigator
 const Stack = createNativeStackNavigator();
@@ -24,7 +24,7 @@ const withLayout = (Component: React.ComponentType<any>, routeName: string) => (
   </MainLayout>
 );
 
-export default function App() {
+export default function MainNavigator() {
   return (
     <NavigationContainer>
       <Stack.Navigator
