@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import SignIn from './screens/(auth)/SignIn';
-import SignUp from './screens/(auth)/SignUp';
+import SignIn from './SignIn';
+import SignUp from './SignUp';
 import MainApp from './MainApp';
 
 export default function App() {
