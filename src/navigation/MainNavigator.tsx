@@ -18,13 +18,13 @@ const Stack = createNativeStackNavigator();
 /**
  * Higher-Order Component (HOC) to wrap screens in our Custom Left-Tab Layout.
  */
-const withLayout = (Component: React.ComponentType<any>, routeName: string) => (props: any) => (
-  <MainLayout navigation={props.navigation} activeRoute={routeName}>
+const withLayout = (Component: React.ComponentType<any>, routeName: string, onSignOut: () => void) => (props: any) => (
+  <MainLayout navigation={props.navigation} activeRoute={routeName} onSignOut={onSignOut}>
     <Component {...props} />
   </MainLayout>
 );
 
-export default function MainNavigator() {
+export default function MainNavigator({ onSignOut }) {
   return (
     <NavigationContainer>
       <Stack.Navigator
@@ -35,27 +35,27 @@ export default function MainNavigator() {
         }}
       >
         <Stack.Screen name="PeriodicTable">
-          {withLayout(PeriodicTableScreen, 'PeriodicTable')}
+          {withLayout(PeriodicTableScreen, 'PeriodicTable', onSignOut)}
         </Stack.Screen>
 
         <Stack.Screen name="Search">
-          {withLayout(SearchScreen, 'Search')}
+          {withLayout(SearchScreen, 'Search', onSignOut)}
         </Stack.Screen>
 
         <Stack.Screen name="Favorites">
-          {withLayout(FavoritesScreen, 'Favorites')}
+          {withLayout(FavoritesScreen, 'Favorites', onSignOut)}
         </Stack.Screen>
 
         <Stack.Screen name="Groups">
-          {withLayout(GroupsScreen, 'Groups')}
+          {withLayout(GroupsScreen, 'Groups', onSignOut)}
         </Stack.Screen>
 
         <Stack.Screen name="Profile">
-          {withLayout(ProfileScreen, 'Profile')}
+          {withLayout(ProfileScreen, 'Profile', onSignOut)}
         </Stack.Screen>
 
         <Stack.Screen name="Settings">
-          {withLayout(SettingsScreen, 'Settings')}
+          {withLayout(SettingsScreen, 'Settings', onSignOut)}
         </Stack.Screen>
       </Stack.Navigator>
     </NavigationContainer>

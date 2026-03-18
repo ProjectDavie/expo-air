@@ -2,7 +2,7 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, SafeAreaView } from 'react-native';
 
-export default function MainLayout({ children, navigation, activeRoute }) {
+export default function MainLayout({ children, navigation, activeRoute, onSignOut }) {
   const tabs = [
     { name: 'Table', icon: '⚛️', route: 'PeriodicTable' },
     { name: 'Search', icon: '🔍', route: 'Search' },
@@ -28,6 +28,13 @@ export default function MainLayout({ children, navigation, activeRoute }) {
               <Text style={styles.tabText}>{tab.name}</Text>
             </TouchableOpacity>
           ))}
+          <TouchableOpacity
+            style={styles.signOutButton}
+            onPress={onSignOut}
+          >
+            <Text style={styles.signOutIcon}>🚪</Text>
+            <Text style={styles.signOutText}>Sign Out</Text>
+          </TouchableOpacity>
         </View>
 
         {/* RIGHT CONTENT AREA */}
@@ -63,4 +70,13 @@ const styles = StyleSheet.create({
   tabIcon: { fontSize: 20 },
   tabText: { color: '#fff', fontSize: 10, marginTop: 4 },
   rightContent: { flex: 1, backgroundColor: '#f5f5f5' },
+  signOutButton: {
+    padding: 15,
+    alignItems: 'center',
+    width: '100%',
+    marginTop: 'auto',
+    marginBottom: 20,
+  },
+  signOutIcon: { fontSize: 20 },
+  signOutText: { color: '#fff', fontSize: 10, marginTop: 4 },
 });
