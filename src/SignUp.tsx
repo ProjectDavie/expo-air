@@ -8,25 +8,26 @@ import {
 } from 'react-native';
 
 interface Props {
-  goToSignup: () => void;
+  goToLogin: () => void;
   goToMain: () => void;
 }
 
-export default function SignIn({ goToSignup, goToMain }: Props) {
+export default function SignUp({ goToLogin, goToMain }: Props) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleLogin = () => {
+  const handleSignup = () => {
     if (username.trim() && password.trim()) {
+      alert('Account created successfully!');
       goToMain();
     } else {
-      alert('Please fill in both username and password.');
+      alert('Please fill in all fields.');
     }
   };
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Login</Text>
+      <Text style={styles.title}>Sign Up</Text>
 
       <TextInput
         placeholder="Username"
@@ -43,13 +44,13 @@ export default function SignIn({ goToSignup, goToMain }: Props) {
         secureTextEntry
       />
 
-      <TouchableOpacity style={styles.button} onPress={handleLogin}>
-        <Text style={styles.buttonText}>Sign In</Text>
+      <TouchableOpacity style={styles.button} onPress={handleSignup}>
+        <Text style={styles.buttonText}>Create Account</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity onPress={goToSignup}>
+      <TouchableOpacity onPress={goToLogin}>
         <Text style={styles.switchText}>
-          Don't have an account? Sign Up
+          Already have an account? Sign In
         </Text>
       </TouchableOpacity>
     </View>
@@ -81,7 +82,7 @@ const styles = StyleSheet.create({
   },
 
   button: {
-    backgroundColor: '#2c3e50',
+    backgroundColor: '#27ae60',
     padding: 12,
     borderRadius: 8,
     alignItems: 'center',
