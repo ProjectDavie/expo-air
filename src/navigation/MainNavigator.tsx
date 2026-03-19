@@ -11,7 +11,7 @@ import SearchScreen from '../screens/main/SearchScreen';
 import FavoritesScreen from '../screens/main/FavoritesScreen';
 import GroupsScreen from '../screens/main/WhiteBoardScreen';
 import SettingsScreen from '../screens/main/SettingsScreen';
-import WhiteBoard from '../screens/main/Whiteboard/WhiteBoard';
+import WhiteBoard from '../screens/main/whiteboard/WhiteBoard';
 
 // Initialize the Stack Navigator
 const Stack = createNativeStackNavigator();
